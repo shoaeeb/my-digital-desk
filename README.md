@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Digital Desk
 
-## Getting Started
+A minimalist workspace for your personal notes and ideas. Create categories, stay organized, and focus on what matters most.
 
-First, run the development server:
+## 🚀 Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+My Digital Desk is a productivity application built with Next.js that helps users organize their digital life through intuitive drag-and-drop functionality and clean, minimalist design.
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14.2.35
+- **Language:** TypeScript
+- **Styling:** CSS Modules
+- **Icons:** React Icons
+- **Fonts:** Inter (Google Fonts)
+- **Images:** Next.js Image Optimization
+
+## 📋 Current Progress
+
+### ✅ Completed Features
+
+#### Landing Page Components
+- [x] **Navbar** - Responsive navigation with mobile menu
+- [x] **Hero Section** - Main landing area with CTA
+- [x] **Feature Section** - Three-column feature showcase
+- [x] **Drag & Drop Feature** - Detailed feature explanation
+- [x] **Review Section** - Customer testimonials (partial)
+- [x] **CTA Section** - Call-to-action area
+- [x] **Footer** - Links and company information
+
+#### Technical Implementation
+- [x] Next.js project setup with TypeScript
+- [x] CSS Modules for component styling
+- [x] Responsive design for mobile/tablet/desktop
+- [x] Custom SVG logo component
+- [x] Image optimization with Next.js Image
+- [x] CSS custom properties for theming
+- [x] Mobile-first responsive design
+
+#### Design System
+- [x] Color scheme with CSS variables
+- [x] Typography with Inter font
+- [x] Consistent spacing and layout
+- [x] Icon integration with React Icons
+
+### 🔧 Known Issues (To Fix)
+- [ ] ReviewStars component not rendering properly
+- [ ] Footer table alignment issues
+- [ ] Minor typos in Feature component text
+- [ ] Mobile responsiveness fine-tuning needed
+
+## 🏗️ Project Structure
+
+```
+mydigitaldesk/
+├── app/
+│   ├── components/
+│   │   ├── Navbar.tsx & navbar.module.css
+│   │   ├── Hero.tsx & hero.module.css
+│   │   ├── Feature.tsx & feature.module.css
+│   │   ├── FeatureDragandDrop.tsx & featuredraganddrop.module.css
+│   │   ├── ReviewSection.tsx & review.module.css
+│   │   ├── CTASection.tsx & cta.module.css
+│   │   └── Footer.tsx & footer.module.css
+│   ├── constants/
+│   │   └── constants.tsx (Logo SVG)
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── next.config.mjs
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Design Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Minimalist Design:** Clean, distraction-free interface
+- **Responsive Layout:** Works on all device sizes
+- **Custom Branding:** Unique logo and color scheme
+- **Modern UI:** Contemporary design patterns
+- **Accessibility:** Semantic HTML and proper alt texts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚧 Upcoming Features
 
-## Learn More
+### Phase 2: Core Application
+- [ ] User authentication system
+- [ ] Dashboard interface
+- [ ] Note creation and editing
+- [ ] Category management
+- [ ] Drag and drop functionality
 
-To learn more about Next.js, take a look at the following resources:
+### Phase 3: Advanced Features
+- [ ] Search functionality
+- [ ] Tags and filtering
+- [ ] Export/import capabilities
+- [ ] Collaboration features
+- [ ] Mobile app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Phase 4: Premium Features
+- [ ] Advanced organization tools
+- [ ] Analytics and insights
+- [ ] Integrations with other tools
+- [ ] Custom themes
+- [ ] Priority support
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔧 Development
 
-## Deploy on Vercel
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Getting Started
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd mydigitaldesk
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Run development server
+```bash
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000)
+
+### Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 📝 Notes
+
+- Landing page is fully functional and responsive
+- Ready for user testing and feedback
+- Core application development can begin
+- Design system established for consistent UI
+
+## 🤝 Contributing
+
+This is a personal project currently in development. More contribution guidelines will be added as the project grows.
+
+## 📄 License
+
+This project is private and not yet licensed for public use.
+
+---
+
+**Last Updated:** January 2026
+**Current Version:** Landing Page Complete
+**Next Milestone:** User Authentication & Dashboard

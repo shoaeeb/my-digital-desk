@@ -1,10 +1,12 @@
 "use client";
 import Link from "next/link";
-import { LogoSvg } from "../constants/constants";
+import { LogoSvg } from "../app/constants/constants";
 import styles from "./navbar.module.css";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className={styles.navbar}>
@@ -27,7 +29,15 @@ const Navbar = () => {
         </div>
         <div className={styles.buttons}>
           <button className={styles.getStarted}>Get Started</button>
-          <button className={styles.signIn}>Sign In</button>
+          <button
+            onClick={() => {
+              console.log("clicked");
+              router.push("/login");
+            }}
+            className={styles.signIn}
+          >
+            Sign In
+          </button>
         </div>
       </div>
       {/* mobile Actions */}
@@ -48,7 +58,15 @@ const Navbar = () => {
           <Link className={styles.mobileLink} href={"/about"}>
             About
           </Link>
-          <button className={styles.mobileSignIn}>Sign In</button>
+          <button
+            onClick={() => {
+              console.log("clicked");
+              router.push("/login");
+            }}
+            className={styles.mobileSignIn}
+          >
+            Sign In
+          </button>
           <button className={styles.mobileGetStarted}>Get Started</button>
         </div>
       )}

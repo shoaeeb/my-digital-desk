@@ -1,4 +1,4 @@
-import { LogoSvg } from "../constants/constants";
+import { LogoSvg } from "../app/constants/constants";
 import styles from "./footer.module.css";
 
 const Footer = () => {
@@ -17,25 +17,30 @@ const Footer = () => {
         </div>
         <div className={styles.rightSection}>
           <table>
-            <th>Product</th>
-            <th>Company</th>
-            <th>Support</th>
-
-            <tr>
-              <td>Features</td>
-              <td>About</td>
-              <td>Help Center</td>
-            </tr>
-            <tr>
-              <td>Pricing</td>
-              <td>Blog</td>
-              <td>Privacy</td>
-            </tr>
-            <tr>
-              <td>Testimonials</td>
-              <td>Careers</td>
-              <td>Terms</td>
-            </tr>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Company</th>
+                <th>Support</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Features</td>
+                <td>About</td>
+                <td>Help Center</td>
+              </tr>
+              <tr>
+                <td>Pricing</td>
+                <td>Blog</td>
+                <td>Privacy</td>
+              </tr>
+              <tr>
+                <td>Testimonials</td>
+                <td>Careers</td>
+                <td>Terms</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>

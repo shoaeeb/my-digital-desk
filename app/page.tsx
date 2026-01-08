@@ -1,10 +1,10 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import Hero from "./components/Hero";
-import Feature from "./components/Feature";
-import FeatureDragandDrop from "./components/FeatureDragandDrop";
-import ReviewSection from "./components/ReviewSection";
-import CTASection from "./components/CTASection";
+import Hero from "../components/Hero";
+import Feature from "../components/Feature";
+import FeatureDragandDrop from "../components/FeatureDragandDrop";
+import ReviewSection from "../components/ReviewSection";
+import CTASection from "../components/CTASection";
 
 export default function Home() {
   return (
