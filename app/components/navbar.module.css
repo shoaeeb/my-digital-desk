@@ -1,0 +1,123 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding: 7px 10px;
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.logo h5 {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 7px 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(19, 18, 18);
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+}
+.getStarted {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 700;
+  padding: 10px 7px;
+  border: none;
+  border-radius: 10px;
+}
+.getStarted:hover {
+  background-color: #1293f0;
+}
+
+.signIn {
+  font-weight: 700;
+  background-color: gainsboro;
+  color: #000;
+  text-align: center;
+  padding: 10px 7px;
+  border: none;
+  border-radius: 10px;
+}
+.signIn:hover {
+  background-color: #bebdbd;
+}
+
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+
+  border-top: none;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+}
+
+.mobileLink {
+  text-decoration: none;
+  color: rgb(19, 18, 18);
+  padding: 10px;
+}
+
+.mobileSignIn {
+  font-weight: 700;
+  background-color: gainsboro;
+  color: #000;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+.mobileGetStarted {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 700;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    position: relative;
+  }
+  .actions {
+    display: none;
+  }
+  .menuButton {
+    display: block;
+  }
+}

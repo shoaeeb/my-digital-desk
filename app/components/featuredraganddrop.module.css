@@ -1,0 +1,56 @@
+.featureContainer {
+  background-color: var(--background-light);
+  padding: 50px 200px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.icon {
+  height: 60px;
+  width: 60px;
+  color: var(--primary);
+}
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.heading h4 {
+  color: var(--primary);
+}
+
+.paragraph {
+  color: grey;
+}
+
+.heading {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  /* //delete this in production */
+  /* border: 1px solid black; */
+}
+.features {
+  display: flex;
+  gap: 5px;
+}
+.feature {
+  display: flex;
+  gap: 5px;
+}
+.iconTick {
+  color: green;
+  border: 1px solid green;
+  border-radius: 25px;
+}
+
+@media (max-width: 878px) {
+  .featureContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 10px;
+    align-items: center;
+  }
+}

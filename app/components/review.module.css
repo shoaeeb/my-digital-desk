@@ -1,0 +1,64 @@
+.reviewSection {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  padding: bottom 50px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.topSection {
+  text-align: center;
+}
+.topSection h2 > span {
+  display: block;
+}
+
+.rightSection {
+  padding-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  gap: 6px;
+}
+.review {
+  background-color: var(--background-light);
+  padding: 20px 30px;
+  width: 100%;
+  border-radius: 25px;
+}
+
+.header {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.profilePic {
+  border: none;
+  border-radius: 50%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.stars {
+  margin-top: 6px;
+}
+.starIcon {
+  color: rgb(135, 135, 9);
+}
+
+.comment {
+  font-style: italic;
+}
+.comment span {
+  display: block;
+}
+
+@media (max-width: 868px) {
+  .rightSection {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}

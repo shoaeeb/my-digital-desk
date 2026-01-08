@@ -1,4 +1,4 @@
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -39,4 +39,17 @@ a {
   html {
     color-scheme: dark;
   }
+} */
+
+:root {
+  --primary: #2b8cee;
+  --background-light: #f6f7f8;
+  --background-dark: #101922;
+  --text-color: #f6f7f8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

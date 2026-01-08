@@ -1,0 +1,52 @@
+.CTAContainer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.CTAaction {
+  background-color: var(--primary);
+  color: white;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+}
+
+.getStarted {
+  padding: 15px 20px;
+  text-align: center;
+  color: var(--primary);
+  background-color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.heading {
+  text-align: center;
+}
+.pricing {
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.info {
+  font-size: 25px;
+  margin-bottom: 25px;
+}
+.info span {
+  display: block;
+  text-align: center;
+}
