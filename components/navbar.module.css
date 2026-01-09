@@ -115,7 +115,26 @@
   border-radius: 10px;
 }
 
+.profile {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
+}
+
+.profilePic {
+  border-radius: 25px;
+  border: none;
+}
+
+.emailAddress {
+  font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
+  .profile {
+    justify-content: start;
+  }
   .navbar {
     position: relative;
   }
