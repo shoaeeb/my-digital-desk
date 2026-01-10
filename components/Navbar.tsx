@@ -5,6 +5,9 @@ import styles from "./navbar.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoMdClose } from "react-icons/io";
+
 import Image from "next/image";
 
 const Navbar = () => {
@@ -20,6 +23,11 @@ const Navbar = () => {
       {/* Desktop Actions */}
       <div className={styles.actions}>
         <div className={styles.links}>
+          {status !== "loading" && status === "authenticated" && (
+            <Link className={styles.link} href={"/dashboard"}>
+              Home
+            </Link>
+          )}
           <Link className={styles.link} href={"/features"}>
             Features
           </Link>
@@ -77,10 +85,15 @@ const Navbar = () => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className={styles.menuButton}
       >
-        ☰
+        {isMenuOpen ? <IoMdClose size={30} /> : <GiHamburgerMenu size={30} />}
       </button>
       {isMenuOpen && (
         <div className={styles.mobileMenu}>
+          {status !== "loading" && status === "authenticated" && (
+            <Link className={styles.mobileLink} href={"/dashboard"}>
+              Home
+            </Link>
+          )}
           <Link className={styles.mobileLink} href={"/features"}>
             Features
           </Link>
