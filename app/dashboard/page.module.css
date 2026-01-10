@@ -1,0 +1,121 @@
+.mainContainer {
+  height: 100vh;
+  display: flex;
+  gap: 5px;
+}
+
+.sidebar {
+  width: 300px;
+  height: 100%;
+  min-height: 100vh;
+  border-right: 1px solid black;
+  transition: width 0.3s ease;
+  padding: 10px;
+}
+
+.sidebarClosed {
+  width: 50px;
+  padding: 5px;
+}
+.noteContainer {
+  min-height: 100vh;
+  height: 100%;
+  padding: 20px 10px;
+  flex: 1;
+}
+
+.subheading {
+  color: grey;
+}
+
+.emptyState {
+  height: 100%;
+  width: 100%;
+  min-width: calc(100vw - 300px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid green;
+  flex-direction: column;
+  gap: 10px;
+  transition: min-width 0.3s ease;
+}
+
+.emptyStateExpanded {
+  min-width: calc(100vw - 50px);
+}
+
+.emptyStateImage {
+  height: auto !important;
+  width: 100% !important;
+  max-width: 300px;
+}
+
+.noNote {
+  text-align: center;
+}
+.info {
+  color: grey;
+  text-align: center;
+}
+.info span {
+  display: block;
+}
+.createIcon {
+  color: white;
+}
+
+.createLink {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background-color: var(--primary);
+  padding: 10px 15px;
+  border-radius: 25px;
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.categoryText {
+  color: grey;
+}
+
+.icon {
+  color: var(--primary);
+}
+
+.toggleButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.createCategoryBtn {
+  border: none;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 10px 15px;
+  color: white;
+  background-color: var(--primary);
+  font-size: 1rem;
+  border-radius: 25px;
+}
+
+.categoryItem {
+  padding: 10px 15px;
+  color: white;
+
+  text-align: center;
+}
