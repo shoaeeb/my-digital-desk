@@ -58,6 +58,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--background-light);
+  font-family: Inter, sans-serif;
+  color: #333;
 }
 
 .container {
@@ -144,4 +147,78 @@ body {
   background-color: red;
   color: white;
   padding: 10px 15px;
+}
+
+/* /react quill styles */
+
+.editor-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.title-input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 1rem;
+  outline: none;
+  background: transparent;
+}
+
+.title-input:focus {
+  border-bottom-color: #3b82f6;
+}
+
+/* Customize Quill editor */
+.ql-editor {
+  min-height: 300px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.ql-toolbar {
+  border-top: 1px solid #e5e7eb;
+  border-left: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+}
+
+.ql-container {
+  border-bottom: 1px solid #e5e7eb;
+  border-left: 1px solid #e5e7eb;
+  border-right: 1px solid #e5e7eb;
+}
+
+/* create note actions and navbar */
+.create-navbar {
+  padding: 10px 15px;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.note-cancel,
+.note-save {
+  border: none;
+  padding: 10px 15px;
+  color: white;
+}
+
+.title-action {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.actions {
+  display: flex;
+  gap: 5px;
+}
+.note-cancel {
+  background-color: red;
+}
+.note-save {
+  background-color: var(--primary);
 }
