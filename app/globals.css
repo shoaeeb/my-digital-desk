@@ -64,3 +64,84 @@ body {
   flex: 1;
   min-height: calc(100vh -50px -201px);
 }
+
+/* modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 400px;
+  max-width: 90vw;
+}
+
+.modalInput {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 15px 0;
+}
+.colorPicker {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.selectedColor {
+  border: 2px solid green;
+  border-radius: 50%;
+}
+
+.createBtn {
+  border: none;
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 15px;
+}
+.cancelBtn {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 10px 15px;
+}
+
+.colorOption {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.createBtn {
+  border: none;
+  background-color: var(--primary);
+  color: white;
+  padding: 10px 15px;
+}
+.cancelBtn {
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 10px 15px;
+}
