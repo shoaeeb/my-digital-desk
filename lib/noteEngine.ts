@@ -1,5 +1,6 @@
 import connectDB from "./mongodb";
 import Category from "@/lib/models/Category";
+import Note from "@/lib/models/Note";
 
 export async function createorEditCategory(
   userId: string,
@@ -40,4 +41,46 @@ export async function createorEditCategory(
     };
   }
   return { success: false, message: "Internal Server Error" };
+}
+//categoryId, content, title
+export async function createorEditNotes(
+  userId: string,
+  title: string,
+  categoryId: string,
+  isEditing: boolean,
+  content: string,
+  noteId: string | undefined
+) {
+  await connectDB();
+  //check if the category exists or not
+  const category = await Category.findOne({
+    userId,
+    _id: categoryId,
+  });
+  //check if the category exists or
+  if (!category) {
+    return { success: false, message: "Category does not exists" };
+  }
+  if (isEditing && noteId) {
+    const existingNote = await Note.findOne({
+      userId,
+      categoryId,
+      _id: noteId,
+    });
+    existingNote.content = content;
+    existingNote.title = title;
+    await existingNote.save();
+    return { success: true, message: "Note Edited Successfully" };
+  }
+  if (!isEditing) {
+    //create the note
+    const newNote = await Note.create({
+      userId,
+      categoryId,
+      content,
+      title,
+    });
+    return { success: true, message: "Note created Successfully" };
+  }
+  return { success: false, message: "Failed to create/edit Note" };
 }

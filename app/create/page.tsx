@@ -15,6 +15,7 @@ const CreatePage = () => {
   const [SelectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null
   );
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
@@ -47,7 +48,7 @@ const CreatePage = () => {
     return categories.find((item) => item._id.toString() === SelectedCategoryId)
       ?.color;
   };
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     //TODO:API Call
     if (!SelectedCategoryId || !content || !title) {
       alert("All fields are required");
@@ -56,6 +57,30 @@ const CreatePage = () => {
     console.log(SelectedCategoryId);
     console.log(content);
     console.log(title);
+    try {
+      const response = await fetch("/api/note/create", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          content,
+          title,
+          categoryId: SelectedCategoryId,
+        }),
+      });
+      const { message, success } = await response.json();
+      if (success) {
+        alert(message);
+        //note create successfully
+      } else {
+        alert(message || "Failed to create note");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   //get all the categories of the User
@@ -69,6 +94,10 @@ const CreatePage = () => {
       });
       const { data } = await response.json();
       setCategories(data);
+      if (data.length === 0) {
+        alert("Before Creating a Note . Pls Create a category from dashboard");
+        router.push("/dashboard");
+      }
     };
     getAllCategories();
   }, []);
@@ -88,8 +117,12 @@ const CreatePage = () => {
           <button className={"note-cancel"} onClick={handleBack}>
             Cancel
           </button>
-          <button onClick={handleSubmit} className={"note-save"}>
-            Save Changes
+          <button
+            disabled={loading}
+            onClick={handleSubmit}
+            className={"note-save"}
+          >
+            {loading ? "Saving Changes..." : "Save Changes"}
           </button>
         </div>
       </div>
