@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { IoIosAddCircle } from "react-icons/io";
+import { FaEdit } from "react-icons/fa";
 import styles from "./page.module.css";
+import { CategoryType } from "../constants/constants";
 
 interface SidebarToggleProps {
   children: React.ReactNode;
@@ -20,63 +22,154 @@ const CATEGORY_COLORS = [
   "#84cc16", // Lime
 ];
 
-interface CategoryType {
-  _id: string;
-  name: string;
-  color: string;
-  createdAt: number;
-  updatedAt: number;
-}
-
 // TODO
 // get the categories from the backend
-const categories = [
-  {
-    _id: crypto.randomUUID(),
-    name: "Finance",
-    userId: "12354",
-    color: CATEGORY_COLORS[0], // Blue
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
-  },
-  {
-    _id: crypto.randomUUID(),
-    name: "Work",
-    userId: "12354",
-    color: CATEGORY_COLORS[1], // Red
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
-  },
-  {
-    _id: crypto.randomUUID(),
-    name: "Personal",
-    userId: "12354",
-    color: CATEGORY_COLORS[2], // Green
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
-  },
-  {
-    _id: crypto.randomUUID(),
-    name: "Health",
-    userId: "12354",
-    color: CATEGORY_COLORS[3], // Yellow
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
-  },
-  {
-    _id: crypto.randomUUID(),
-    name: "Learning",
-    userId: "12354",
-    color: CATEGORY_COLORS[4], // Purple
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
-  },
-];
+// const categories = [
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Finance",
+//     userId: "12354",
+//     color: CATEGORY_COLORS[0], // Blue
+//     createdAt: Date.now(),
+//     updatedAt: Date.now(),
+//   },
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Work",
+//     userId: "12354",
+//     color: CATEGORY_COLORS[1], // Red
+//     createdAt: Date.now(),
+//     updatedAt: Date.now(),
+//   },
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Personal",
+//     userId: "12354",
+//     color: CATEGORY_COLORS[2], // Green
+//     createdAt: Date.now(),
+//     updatedAt: Date.now(),
+//   },
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Health",
+//     userId: "12354",
+//     color: CATEGORY_COLORS[3], // Yellow
+//     createdAt: Date.now(),
+//     updatedAt: Date.now(),
+//   },
+//   {
+//     _id: crypto.randomUUID(),
+//     name: "Learning",
+//     userId: "12354",
+//     color: CATEGORY_COLORS[4], // Purple
+//     createdAt: Date.now(),
+//     updatedAt: Date.now(),
+//   },
+// ];
 
 function SidebarToggle({ children }: SidebarToggleProps) {
   const [sidebaropen, setSidebarOpen] = useState(true);
   const [createCategoryModal, setCreateCategoryModal] = useState(false);
   const [selectedColor, setSelectedColor] = useState(CATEGORY_COLORS[0]);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [categoryTitle, setCategoryTitle] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [editCategoryModal, setEditCategoryModal] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null
+  );
+
+  //get all the categories on first reload;
+
+  useEffect(() => {
+    async function getAllCategories() {
+      try {
+        const response = await fetch("/api/category", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "GET",
+        });
+        const { data } = await response.json();
+        setCategories(data);
+      } catch (error) {
+        console.log(error);
+        alert("Failed to get Categories");
+      }
+    }
+    getAllCategories();
+  }, []);
+
+  async function handleEditCategory() {
+    console.log("clicked");
+    const name = categoryTitle;
+    const color = selectedColor;
+    setLoading(true);
+    try {
+      const response = await fetch("/api/category/edit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, color }),
+      });
+      const { success, message } = await response.json();
+
+      if (success) {
+        alert(message);
+        setEditCategoryModal(false);
+        setCategoryTitle("");
+        // Refetch categories
+        const categoriesResponse = await fetch("/api/category");
+        const { data } = await categoriesResponse.json();
+        setCategories(data);
+      } else {
+        // ADD THIS ELSE BLOCK
+        alert(message || "Failed to edit category");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Failed to Edit category. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleCreateCategory() {
+    if (!categoryTitle.trim()) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch("/api/category/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: categoryTitle, color: selectedColor }),
+      });
+
+      const { message, success } = await response.json();
+
+      if (success) {
+        alert(message);
+        setCreateCategoryModal(false);
+        setCategoryTitle("");
+        // Refetch categories
+        const categoriesResponse = await fetch("/api/category");
+        const { data } = await categoriesResponse.json();
+        setCategories(data);
+      } else {
+        // ADD THIS ELSE BLOCK
+        alert(message || "Failed to Add Category");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Failed to create category. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const findCategoryColor = () => {
+    return categories.find((item) => item._id.toString() === selectedCategoryId)
+      ?.color;
+  };
   return (
     <>
       <div className={styles.mainContainer}>
@@ -99,10 +192,20 @@ function SidebarToggle({ children }: SidebarToggleProps) {
           {sidebaropen && (
             <div className={styles.sidebarContent}>
               <h3 className={styles.categoryText}>Categories</h3>
+              <button
+                onClick={() => setEditCategoryModal(true)}
+                className={styles.editCategoryBtn}
+              >
+                <FaEdit size={20} className={styles.createIcon} />
+                Edit Category
+              </button>
               {categories.map((category: CategoryType) => {
                 return (
                   <div
-                    style={{ backgroundColor: category.color }}
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: category.color,
+                    }}
                     className={styles.categoryItem}
                     key={category._id}
                   >
@@ -140,6 +243,8 @@ function SidebarToggle({ children }: SidebarToggleProps) {
           <div className={"modalContent"}>
             <h2>Create New Category</h2>
             <input
+              value={categoryTitle}
+              onChange={(e) => setCategoryTitle(e.target.value.trim())}
               type="text"
               placeholder="Category name"
               className={"modalInput"}
@@ -163,7 +268,54 @@ function SidebarToggle({ children }: SidebarToggleProps) {
               >
                 Cancel
               </button>
-              <button className={"createBtn"}>Create</button>
+              <button
+                onClick={handleCreateCategory}
+                className={"createBtn"}
+                disabled={loading}
+              >
+                {loading ? "Creating..." : "Create"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {editCategoryModal && (
+        <div className={"modalOverlay"}>
+          <div className={"modalContent"}>
+            <h2>Edit Category</h2>
+            <input
+              value={categoryTitle}
+              onChange={(e) => setCategoryTitle(e.target.value.trim())}
+              type="text"
+              placeholder="Category name"
+              className={"modalInput"}
+            />
+            <div className={"colorPicker"}>
+              {CATEGORY_COLORS.map((color) => (
+                <div
+                  onClick={() => setSelectedColor(color)}
+                  style={{ backgroundColor: color }}
+                  className={`colorOption ${
+                    selectedColor === color ? "selectedColor" : ""
+                  }`}
+                  key={color}
+                ></div>
+              ))}
+            </div>
+            <div className={"modalActions"}>
+              <button
+                className={"cancelBtn"}
+                onClick={() => setEditCategoryModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleEditCategory}
+                className={"createBtn"}
+                disabled={loading}
+              >
+                {loading ? "Editing..." : "Edit"}
+              </button>
             </div>
           </div>
         </div>

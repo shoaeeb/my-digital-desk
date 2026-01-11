@@ -111,6 +111,20 @@
   background-color: var(--primary);
   font-size: 1rem;
   border-radius: 25px;
+  cursor: pointer;
+}
+
+.editCategoryBtn {
+  border: none;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 10px 15px;
+  color: white;
+  background-color: red;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
 }
 
 .categoryItem {

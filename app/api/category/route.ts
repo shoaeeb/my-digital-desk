@@ -14,6 +14,7 @@ export async function GET(req: Request) {
         {
           success: false,
           message: "Unauthorized",
+          data: [],
         },
         { status: 401 }
       );
@@ -22,7 +23,7 @@ export async function GET(req: Request) {
     const user = await User.findOne({ email: session.user.email });
     if (!user) {
       return NextResponse.json(
-        { success: false, message: "User Not Found" },
+        { success: false, message: "User Not Found", data: [] },
         { status: 404 }
       );
     }
@@ -37,7 +38,7 @@ export async function GET(req: Request) {
     });
   } catch (error) {
     return NextResponse.json(
-      { success: false, message: "Internal Server Error" },
+      { success: false, data: [], message: "Internal Server Error" },
       { status: 500 }
     );
   }

@@ -15,3 +15,11 @@ export const LogoSvg = ({ size }: { size: string }) => {
     </svg>
   );
 };
+
+export interface CategoryType {
+  _id: string;
+  name: string;
+  color: string;
+  createdAt: number;
+  updatedAt: number;
+}

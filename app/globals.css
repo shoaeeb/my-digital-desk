@@ -194,7 +194,7 @@ body {
 
 /* create note actions and navbar */
 .create-navbar {
-  padding: 10px 15px;
+  padding: 10px 20px;
   display: flex;
   gap: 5px;
   justify-content: space-between;
@@ -221,4 +221,15 @@ body {
 }
 .note-save {
   background-color: var(--primary);
+}
+
+.select {
+  padding: 10px 15px;
+  border: none;
+  margin: 5px 0;
+}
+
+.select:focus {
+  outline: none;
+  border: none;
 }

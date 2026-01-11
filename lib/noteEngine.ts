@@ -10,6 +10,7 @@ export async function createorEditCategory(
   await connectDB();
   if (isEditing) {
     const existingCategory = await (Category as any).findOne({ userId, name });
+    console.log(existingCategory);
     if (!existingCategory) {
       return {
         success: false,
@@ -21,6 +22,7 @@ export async function createorEditCategory(
     await existingCategory.save();
     return {
       success: true,
+      data: existingCategory,
       message: "Category Editted Successfully",
     };
   }
@@ -32,6 +34,7 @@ export async function createorEditCategory(
     });
 
     return {
+      data: newCategory,
       success: true,
       message: "Category Created Successfully",
     };

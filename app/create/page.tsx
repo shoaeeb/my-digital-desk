@@ -1,14 +1,20 @@
 "use client";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { CategoryType } from "../constants/constants";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 // create a new note
 //call an API
+
 const CreatePage = () => {
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [SelectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null
+  );
   const router = useRouter();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
@@ -37,6 +43,35 @@ const CreatePage = () => {
   const handleBack = () => {
     router.back(); ///go to previous page;
   };
+  const findCategoryColor = () => {
+    return categories.find((item) => item._id.toString() === SelectedCategoryId)
+      ?.color;
+  };
+  const handleSubmit = () => {
+    //TODO:API Call
+    if (!SelectedCategoryId || !content || !title) {
+      alert("All fields are required");
+      return;
+    }
+    console.log(SelectedCategoryId);
+    console.log(content);
+    console.log(title);
+  };
+
+  //get all the categories of the User
+  useEffect(() => {
+    const getAllCategories = async () => {
+      const response = await fetch("/api/category", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "GET",
+      });
+      const { data } = await response.json();
+      setCategories(data);
+    };
+    getAllCategories();
+  }, []);
   return (
     <>
       <div className={"create-navbar"}>
@@ -50,8 +85,12 @@ const CreatePage = () => {
         </div>
 
         <div className={"actions"}>
-          <button className={"note-cancel"}>Cancel</button>
-          <button className={"note-save"}>Save Changes</button>
+          <button className={"note-cancel"} onClick={handleBack}>
+            Cancel
+          </button>
+          <button onClick={handleSubmit} className={"note-save"}>
+            Save Changes
+          </button>
         </div>
       </div>
       <div className={"editor-container"}>
@@ -62,6 +101,23 @@ const CreatePage = () => {
           onChange={(e) => setTitle(e.target.value)}
           className="title-input"
         />
+        <select
+          style={{ backgroundColor: findCategoryColor() || "" }}
+          className={"select"}
+          value={SelectedCategoryId || ""}
+          onChange={(e) => {
+            setSelectedCategoryId(e.target.value || null);
+          }}
+        >
+          <option value="">Select a category</option>
+          {categories.map((category) => {
+            return (
+              <option key={category._id} value={category._id}>
+                {category.name}
+              </option>
+            );
+          })}
+        </select>
         <ReactQuill
           formats={formats}
           value={content}
