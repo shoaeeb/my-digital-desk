@@ -6,6 +6,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { FaEdit } from "react-icons/fa";
 import styles from "./page.module.css";
 import { CategoryType } from "../constants/constants";
+import { useRouter } from "next/navigation";
 
 interface SidebarToggleProps {
   children: React.ReactNode;
@@ -78,7 +79,7 @@ function SidebarToggle({ children }: SidebarToggleProps) {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null
   );
-
+  const router = useRouter();
   //get all the categories on first reload;
 
   useEffect(() => {
@@ -192,6 +193,13 @@ function SidebarToggle({ children }: SidebarToggleProps) {
           {sidebaropen && (
             <div className={styles.sidebarContent}>
               <h3 className={styles.categoryText}>Categories</h3>
+              <button
+                onClick={() => {
+                  router.push("/create");
+                }}
+              >
+                Create Note
+              </button>
               <button
                 onClick={() => setEditCategoryModal(true)}
                 className={styles.editCategoryBtn}
